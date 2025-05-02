@@ -41,7 +41,7 @@ export const PokemonPopOver: React.FC<PokemonPopOverProps> = ({
             onMouseEnter={openPopover}
             onMouseLeave={closePopover}
           >
-            <span className='capitalize truncate ...'>{name}</span>
+            {name}
           </Button>
         </Popover.Target>
         <Popover.Dropdown style={{ minHeight: 120 }}>

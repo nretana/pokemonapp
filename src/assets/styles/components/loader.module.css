@@ -1,0 +1,7 @@
+
+.loaderRoot {
+    > * {
+        background-image: linear-gradient(90deg, #7b81ec, #3bd1d3);
+        background-color: var(--mantine-color-cyan-5);
+    }
+}

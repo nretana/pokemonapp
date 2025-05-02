@@ -1,19 +1,23 @@
 import {
   Anchor,
   Button,
+  Loader,
   Modal,
+  Pagination,
   Popover,
   createTheme,
 } from '@mantine/core';
 import buttonClasses from '@/assets/styles/components/button.module.css';
 import popoverClasses from '@/assets/styles/components/popover.module.css';
 import modalClasses from '@/assets/styles/components/modal.module.css';
+import paginationClasses from '@/assets/styles/components/pagination.module.css';
+import loaderClasses from '@/assets/styles/components/loader.module.css';
 
 
 /* mantine core theme */
 export const AppTheme = () => {
   const theme = createTheme({
-    primaryColor: 'blue',
+    //primaryColor: 'blue',
     defaultRadius: '0.75rem',
     breakpoints: {
       xs: '640px',
@@ -29,7 +33,10 @@ export const AppTheme = () => {
         },
       }),
       Button: Button.extend({
-        classNames: buttonClasses,
+        classNames: {
+          root: buttonClasses.buttonRoot,
+          label: buttonClasses.buttonLabel
+        },
       }),
       Popover: Popover.extend({
         classNames: {
@@ -42,7 +49,18 @@ export const AppTheme = () => {
           root: modalClasses.modalRoot,
           header: modalClasses.modalHeader,
           body: modalClasses.modalBody
-        },
+        }
+      }),
+      Pagination: Pagination.extend({
+        classNames: {
+          root: paginationClasses.paginationRoot,
+          control: paginationClasses.paginationControl
+        }
+      }),
+      Loader: Loader.extend({
+        classNames: {
+          root: loaderClasses.loaderRoot
+        }
       })
     },
   });

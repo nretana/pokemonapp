@@ -30,6 +30,13 @@ export const miscRoutes: RouteTree[] = [
     subRoute: []
   },
   {
+    routeKey: 'not-found-redirect',
+    path: '/404',
+    routeType: PUBLIC_ROUTE_TYPE,
+    component: lazy(() => import('../views/core/NotFoundView')),
+    subRoute: []
+  },
+  {
     routeKey: 'not-found',
     path: '*',
     routeType: PUBLIC_ROUTE_TYPE,

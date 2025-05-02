@@ -1,34 +1,48 @@
-import React from 'react';
-import { usePokemonContext } from '../context/pokemon-context';
+import React, { use } from 'react';
 import { PokemonPopOver } from './popover/PokemonPopOver';
 import { PokemonContext } from '../context/pokemon-context';
 import { GridSkeleton } from '../../shared/GridSkeleton';
-import { GENERAL_ERROR } from '@/constants/app.errors.constants';
+import {
+  GENERAL_ERROR,
+  EMPTY_ITEMS_INFO,
+} from '@/constants/app.errors.constants';
 import { Alert } from '@mantine/core';
+import {
+  IconExclamationCircleFilled,
+  IconInfoCircleFilled,
+} from '@tabler/icons-react';
+
 
 export const PokemonGrid: React.FC = () => {
-  const { queryResult, paginationResult } = usePokemonContext();
+  const { queryResult, paginationResult } = use(PokemonContext);
 
-  return (
-    <>
-      {queryResult?.isError && <Alert color='red'>{GENERAL_ERROR}</Alert>}
-      {queryResult?.isFetching ||
-        queryResult?.isLoading ||
-        (queryResult?.isSuccess && (
-          <div className='grid grid-cols-[repeat(2,170px)] md:grid-cols-[repeat(3,170px)] lg:grid-cols-[repeat(5,170px)] gap-4'>
-            {queryResult?.isFetching ||
-              (queryResult?.isLoading && <GridSkeleton />)}
-            {queryResult?.isSuccess &&
-              paginationResult.pageItems.length > 0 &&
-              paginationResult.pageItems.map((item: any, index: number) => (
-                <PokemonPopOver
-                  key={`pokemon_${index}`}
-                  name={item.name}
-                  url={item.url}
-                />
-              ))}
-          </div>
-        ))}
-    </>
-  );
+ if (queryResult?.isError)
+    return (
+      <Alert color='pink' radius='xl' icon={<IconExclamationCircleFilled />}>
+        {GENERAL_ERROR}
+      </Alert>
+    );
+
+  if (queryResult?.isSuccess && paginationResult.pageItems.length === 0)
+    return (
+      <Alert color='yellow' radius='xl' icon={<IconInfoCircleFilled />}>
+        {EMPTY_ITEMS_INFO}
+      </Alert>
+    );
+
+  if (queryResult?.isSuccess)
+    return (
+      <div className='grid grid-cols-[repeat(2,170px)] md:grid-cols-[repeat(3,170px)] lg:grid-cols-[repeat(5,170px)] gap-4 lg:gap-6'>
+        {paginationResult.pageItems.length > 0 &&
+          paginationResult.pageItems.map((item: any, index: number) => (
+            <PokemonPopOver
+              key={`pokemon_${index}`}
+              name={item.name}
+              url={item.url}
+            />
+          ))}
+      </div>
+    );
+
+  return <GridSkeleton />;
 };

@@ -1,0 +1,11 @@
+
+.paginationRoot {}
+
+.paginationControl {
+    &[data-active='true'] {
+        background-color: var(--mantine-color-cyan-5);
+        background-image: linear-gradient(90deg, #7b81ec, #3bd1d3);
+        color: var(--mantine-color-white);
+        border-width: 0;
+    }
+}

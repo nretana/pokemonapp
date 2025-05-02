@@ -8,6 +8,7 @@ import {
   Alert,
   useComputedColorScheme,
   List,
+  Divider,
   ListItem,
 } from '@mantine/core';
 import type { ModalProps } from '@mantine/core';
@@ -17,9 +18,7 @@ import { Card, Image, Text } from '@mantine/core';
 import { GENERAL_ERROR } from '@/constants/app.errors.constants';
 import { LoadingContent } from '@/components/shared/LoadingContent';
 import { IconPhotoFilled } from '@tabler/icons-react';
-import { MODE_LIGHT } from '@/constants/theme.constant';
-import { IconBoltFilled, IconPointFilled } from '@tabler/icons-react';
-
+import { IconPointFilled } from '@tabler/icons-react';
 
 type PokemonModalProps = {
   pokemonId: number;
@@ -40,21 +39,15 @@ export const PokemonModal: React.FC<PokemonModalProps> = ({
       {isFetching || (isLoading && <LoadingContent />)}
       {isError && <Alert>{GENERAL_ERROR}</Alert>}
       {isSuccess && (
-        <Modal.Root
-          opened={opened}
-          onClose={onClose}
-          centered
-        >
+        <Modal.Root opened={opened} onClose={onClose} centered>
           <Modal.Overlay />
           <Modal.Content>
             <Modal.Body className='p-0 border-0'>
-              <Card shadow='sm' padding='sm' bg='transparent'>
+              <Card shadow='sm' padding='lg' bg='transparent'>
                 <Card.Section
-
+                  bg='#2c2c30'
+                  className='rounded-xl mx-0 mt-0 h-full'
                 >
-                  <Title order={4} tt='capitalize' className='text-center my-4'>
-                    {data?.name}
-                  </Title>
                   <Center>
                     {data.imageUrl ? (
                       <Image
@@ -62,17 +55,20 @@ export const PokemonModal: React.FC<PokemonModalProps> = ({
                         alt={data?.name}
                         w='auto'
                         height={100}
-                        fit='contain'
                       />
                     ) : (
-                      <IconPhotoFilled size={40} />
+                      <span className='h-[120px] content-center'>
+                        <IconPhotoFilled size={40} />
+                      </span>
                     )}
                   </Center>
                 </Card.Section>
-                <Group justify='space-between' mt='md' mb='xs'>
-                  <Title order={5} fw={500}>
-                    Abilities
-                  </Title>
+                <Title order={4} tt='capitalize' className='text-center my-4'>
+                  {data?.name}
+                </Title>
+                <Group justify='space-between' mb='xs'>
+                  <Title order={5}>Abilities</Title>
+                  <Divider my='sm' variant='dashed' />
                 </Group>
                 <List icon={<IconPointFilled size={24} />}>
                   {data?.abilities.length === 0 && (

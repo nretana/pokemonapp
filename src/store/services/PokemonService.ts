@@ -1,11 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { queryStringParams } from '@/utils/queryStringParams';
-import { axiosBaseQuery } from './AxiosBaseQuery';
 import type { Pokemon, PokemonWithPagination } from '@/@types/pokemon';
 import { BASE_API_URL } from '@/constants/app.constant';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query/react';
 import { getLastSegmentPath } from '@/utils/getLastSegmentPath';
-
 
 
 export const PokemonService = createApi({

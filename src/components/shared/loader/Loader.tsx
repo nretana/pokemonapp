@@ -3,5 +3,5 @@ import React from 'react';
 
 
 export const Loader: React.FC<LoaderProps> = (props) => {
-    return(<BaseLoader type='bars' size='lg' {...props} />);
+    return(<BaseLoader type='dots' size='lg' {...props} />);
 }

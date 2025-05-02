@@ -9,8 +9,6 @@ import { RouterProvider } from 'react-router-dom';
 import { allRoutes } from './components/shared/route/AppRouter';
 import { AppTheme } from './configs/theme.config';
 import './App.css';
-import { BrowserRouter } from 'react-router-dom';
-import { AppRouter2 } from './components/shared/route/AppRouter2';
 
 
 const theme = AppTheme();
