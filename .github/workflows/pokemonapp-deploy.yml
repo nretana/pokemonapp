@@ -10,7 +10,7 @@ on:
     branches:
       - main
 stages:
-  stage: Deploy
+  stage: deploy_staging
   displayName: Deploy App in Azure Cloud
   jobs:
     build_and_deploy_job:
