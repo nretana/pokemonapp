@@ -18,7 +18,7 @@ export const PokemonTypeList = () => {
   if(isError) return(<Alert color='red'>{GENERAL_ERROR}</Alert>)
 
   if(isSuccess) return(
-      <div className='grid grid-cols-[repeat(2,170px)] md:grid-cols-[repeat(3,170px)] lg:grid-cols-[repeat(5,170px)] gap-2 md:gap-4 lg:gap-6'>
+      <div className='grid grid-cols-[repeat(1, 1fr)] md:grid-cols-[repeat(3,170px)] lg:grid-cols-[repeat(5,170px)] gap-2 md:gap-4 lg:gap-6 w-full'>
           {data?.results &&
           data?.results.length > 0 &&
           data?.results.map((item, index) => {

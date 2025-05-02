@@ -18,10 +18,10 @@
   .buttonLabel {
     font-weight: 500;
     text-transform: capitalize;
-    overflow-x: hidden;
+    /* overflow-x: hidden;
     overflow-y: auto;
     text-overflow: ellipsis;
     white-space: nowrap;
     display: block;
-    align-content: center;
+    align-content: center; */
   }

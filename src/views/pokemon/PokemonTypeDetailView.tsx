@@ -37,7 +37,7 @@ const PokemonTypeDetailView = () => {
           </Title>
         </div>
         <Card className='block flex justify-center p-5'>
-          <Card.Section className='flex justify-center min-h-48 p-[5rem]'>
+          <Card.Section className='flex justify-center min-h-48 p-3 lg:p-[5rem]'>
             <div>
               <PokemonGridRoot>
                 <PokemonGridRoot.Grid />
