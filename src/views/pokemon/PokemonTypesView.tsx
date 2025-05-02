@@ -18,7 +18,7 @@ const PokemonTypesView = () => {
       </Title>
       <Card className='block flex justify-center p-5'>
         <Card.Section className='flex justify-center p-[1rem] sm:p-[2rem] md:p-[3rem] lg:p-[5rem] min-h-min'>
-          <div className='min-h-32 w-full md:w-auto'>
+          <div className='min-h-32 w-full sm:w-auto'>
             <PokemonTypeList />
           </div>
         </Card.Section>

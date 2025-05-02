@@ -32,7 +32,7 @@ export const PokemonGrid: React.FC = () => {
 
   if (queryResult?.isSuccess)
     return (
-      <div className='grid grid-cols-[repeat(1,1fr)] md:grid-cols-[repeat(3,170px)] lg:grid-cols-[repeat(5,170px)] gap-4 lg:gap-6 w-full'>
+      <div className='grid grid-cols-[repeat(1,1fr)] sm:grid-cols-[repeat(2,170px)] md:grid-cols-[repeat(3,170px)] lg:grid-cols-[repeat(5,170px)] gap-4 lg:gap-6 w-full'>
         {paginationResult.pageItems.length > 0 &&
           paginationResult.pageItems.map((item: any, index: number) => (
             <PokemonPopOver
