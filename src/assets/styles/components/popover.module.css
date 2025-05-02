@@ -1,0 +1,8 @@
+.popoverRoot {
+
+}
+
+.popoverDropdown {
+  background-image: radial-gradient(var(--mantine-color-dark-4), var(--mantine-color-dark-7));
+  border: none;
+}
