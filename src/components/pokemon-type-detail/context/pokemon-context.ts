@@ -20,30 +20,35 @@ export type GetPokemonTypeQueryHookResult = {
 export type Pagination = {
     currentPage: number,
     currentPageSize: number
-}
-
-export type PaginationResult = {
     pageItems:  Omit<Pokemon, 'id' | 'imageUrl'>[],
     numPages: number
 }
 
+export type Filter = {
+    searchText : string
+}
+
 export type PokemonContextState = {
     queryResult?: GetPokemonTypeQueryHookResult
-    currentPage: number,
-    currentPageSize: number
-    setCurrentPage: React.Dispatch<React.SetStateAction<number>>
-    paginationResult: PaginationResult
+    pagination: Pagination
+    setPagination: (key: keyof Pagination, value: unknown) => void
+    filters: Filter
+    setFilters: (key: keyof Filter, value: string) => void
 }
 
-export const PokemonInitState: PokemonContextState = {
-    currentPage: 1,
-    currentPageSize: 20,
-    setCurrentPage: () => {},
-    paginationResult: {
+export const pokemonInitState: PokemonContextState = {
+    pagination: {
+        currentPage: 1,
+        currentPageSize: 20,
         pageItems: [],
         numPages: 0
-    }
+    },
+    setPagination: () => {},
+    filters: {
+        searchText: ''
+    },
+    setFilters: () =>  {}
 }
 
-export const PokemonContext = createContext(PokemonInitState);
+export const PokemonContext = createContext(pokemonInitState);
 export const usePokemonContext = () => useContext(PokemonContext);

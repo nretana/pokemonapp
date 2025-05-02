@@ -3,17 +3,16 @@ import { Pagination } from '@mantine/core';
 import { PokemonContext } from '../context/pokemon-context';
 import { Skeleton } from '@mantine/core';
 
+
 export const PokemonPagination = () => {
-  const { queryResult, paginationResult, currentPage, setCurrentPage } =
-    use(PokemonContext);
-  const { numPages } = paginationResult;
+  const { queryResult, pagination, setPagination } = use(PokemonContext);
 
   const prevPage = () => {
-    setCurrentPage((prev) => prev - 1);
+    setPagination('currentPage', pagination.currentPage - 1);
   };
 
   const nextPage = () => {
-    setCurrentPage((prev) => prev + 1);
+    setPagination('currentPage', pagination.currentPage + 1);
   };
 
   if (queryResult?.isSuccess)
@@ -21,12 +20,12 @@ export const PokemonPagination = () => {
       <div className='flex justify-center mt-4 lg:mt-6'>
         <Pagination
           size='lg'
-          total={numPages}
-          defaultValue={currentPage}
+          total={pagination.numPages}
+          defaultValue={pagination.currentPage}
           onPreviousPage={prevPage}
           onNextPage={nextPage}
-          value={currentPage}
-          onChange={setCurrentPage}
+          value={pagination.currentPage}
+          onChange={(value) => setPagination('currentPage', value)}
         />
       </div>
     );

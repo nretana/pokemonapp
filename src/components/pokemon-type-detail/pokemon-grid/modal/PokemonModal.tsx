@@ -5,8 +5,6 @@ import {
   ModalBaseProps,
   ModalBaseCloseButtonProps,
   Title,
-  Alert,
-  useComputedColorScheme,
   List,
   Divider,
   ListItem,
@@ -15,10 +13,10 @@ import type { ModalProps } from '@mantine/core';
 import React from 'react';
 import { useGetPokemonQuery } from '@/store/services/PokemonService';
 import { Card, Image, Text } from '@mantine/core';
-import { GENERAL_ERROR } from '@/constants/app.errors.constants';
 import { LoadingContent } from '@/components/shared/LoadingContent';
 import { IconPhotoFilled } from '@tabler/icons-react';
 import { IconPointFilled } from '@tabler/icons-react';
+import { GeneralErrorAlert } from '@/components/shared/GeneralErrorAlert';
 
 type PokemonModalProps = {
   pokemonId: number;
@@ -31,13 +29,12 @@ export const PokemonModal: React.FC<PokemonModalProps> = ({
   opened,
   onClose,
 }) => {
-  const { data, isFetching, isLoading, isSuccess, isError } =
-    useGetPokemonQuery({ pokemonId });
+  const { data, isFetching, isLoading, isSuccess, isError } = useGetPokemonQuery({ pokemonId });
 
   return (
     <>
       {isFetching || (isLoading && <LoadingContent />)}
-      {isError && <Alert>{GENERAL_ERROR}</Alert>}
+      {isError && <GeneralErrorAlert />}
       {isSuccess && (
         <Modal.Root opened={opened} onClose={onClose} centered>
           <Modal.Overlay />
@@ -57,7 +54,7 @@ export const PokemonModal: React.FC<PokemonModalProps> = ({
                         height={100}
                       />
                     ) : (
-                      <span className='h-[120px] content-center'>
+                      <span className='flex items-center h-[120px]'>
                         <IconPhotoFilled size={40} />
                       </span>
                     )}
@@ -80,8 +77,8 @@ export const PokemonModal: React.FC<PokemonModalProps> = ({
                     </ListItem>
                   )}
                   {data?.abilities.length > 0 &&
-                    data?.abilities.map((item) => (
-                      <ListItem>
+                    data?.abilities.map((item, index) => (
+                      <ListItem key={`ability_${index}`}>
                         <Text size='sm'>{item.effect}</Text>
                       </ListItem>
                     ))}

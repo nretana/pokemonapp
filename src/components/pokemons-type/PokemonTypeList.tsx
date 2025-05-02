@@ -1,9 +1,9 @@
 import { useGetPokemonTypesQuery } from '@/store/services/PokemonTypeService';
-import { Button, Alert } from '@mantine/core';
+import { Button } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
 import { getLastSegmentPath } from '@/utils/getLastSegmentPath';
-import { GENERAL_ERROR } from '@/constants/app.errors.constants';
 import { GridSkeleton } from '../shared/GridSkeleton';
+import { GeneralErrorAlert } from '../shared/GeneralErrorAlert';
 
 export const PokemonTypeList = () => {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ export const PokemonTypeList = () => {
   const handleClick = (name: string, typeId: number) =>
     navigate(`/types/${name}`, { state: { typeId } });
 
-  if (isError) return <Alert color='red'>{GENERAL_ERROR}</Alert>;
+  if (isError) return <GeneralErrorAlert />;
 
   if (isSuccess)
     return (

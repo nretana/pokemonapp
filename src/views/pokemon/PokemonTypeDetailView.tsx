@@ -4,18 +4,16 @@ import { Card, Title } from '@mantine/core';
 import { IconButton } from '@/components/shared/icon-button/IconButton';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { IconArrowNarrowLeft } from '@tabler/icons-react';
+import { GENERAL_ERROR } from '@/constants/app.errors.constants';
+import { Alert } from '@mantine/core';
+import { IconExclamationCircleFilled } from '@tabler/icons-react';
 
 const PokemonTypeDetailView = () => {
   const { typeName } = useParams();
   const name = (typeName && typeName.trim() && typeName) || '';
   const navigate = useNavigate();
-
   const location = useLocation();
   const typeId = location.state?.typeId;
-
-  if (isNaN(typeId)) {
-    navigate('/404');
-  }
 
   return (
     <>
@@ -33,16 +31,27 @@ const PokemonTypeDetailView = () => {
             onClick={() => navigate('/types')}
           />
           <Title order={1} tt='capitalize' className='mb-4'>
-            {name.length > 0 ? `${name} Pokemons` : 'Pokemons'}
+            {name.length > 0 && typeId ? `${name} Pokemons` : 'Pokemons'}
           </Title>
         </div>
         <Card className='block flex justify-center p-5'>
           <Card.Section className='flex justify-center min-h-48 p-[1rem] sm:p-[2rem] md:p-[3rem] lg:p-[5rem]'>
             <div className='w-full sm:w-auto'>
-              <PokemonGridRoot>
-                <PokemonGridRoot.Grid />
-                <PokemonGridRoot.Pagination />
-              </PokemonGridRoot>
+              {typeId ? (
+                <PokemonGridRoot>
+                  <PokemonGridRoot.Search />
+                  <PokemonGridRoot.Grid />
+                  <PokemonGridRoot.Pagination />
+                </PokemonGridRoot>
+              ) : (
+                <Alert
+                  color='pink'
+                  radius='xl'
+                  icon={<IconExclamationCircleFilled />}
+                >
+                  {GENERAL_ERROR}
+                </Alert>
+              )}
             </div>
           </Card.Section>
         </Card>

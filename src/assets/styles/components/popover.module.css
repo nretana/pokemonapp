@@ -3,6 +3,7 @@
 }
 
 .popoverDropdown {
-  background-image: radial-gradient(var(--mantine-color-dark-4), var(--mantine-color-dark-7));
+  backdrop-filter: blur(100px);
+  background-image: radial-gradient(at top left, var(--mantine-color-dark-4), var(--mantine-color-dark-7));
   border: none;
 }
