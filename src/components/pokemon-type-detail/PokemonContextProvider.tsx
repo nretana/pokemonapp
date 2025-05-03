@@ -36,6 +36,7 @@ export const PokemonGridRoot: React.FC<PokemonRootProps> &
 
   const onUpdateFilters = (key: keyof Filter, value: string) => {
     setFilters(prev => ({ ...prev, [key]: value }))
+    setPagination(pokemonInitState.pagination);
   }
 
   const onUpdatePagination = (key: keyof Pagination, value: unknown) => {
@@ -46,7 +47,7 @@ export const PokemonGridRoot: React.FC<PokemonRootProps> &
     if(!queryResult.data) return;
     let pokemonList = queryResult.data?.pokemonItems as Omit<Pokemon, 'id' | 'imageUrl'>[];
     if(filters.searchText.trim().length > 0){
-      pokemonList = pokemonList.filter(item => item.name.includes(filters.searchText))
+      pokemonList = pokemonList.filter(item => item.name.includes(filters.searchText));
     }
     const pageItems = pokemonList.slice((currentPage - 1) * currentPageSize, currentPageSize * currentPage);
     const numPages = Math.ceil(pokemonList.length / currentPageSize);
